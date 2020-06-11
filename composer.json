@@ -1,0 +1,19 @@
+{
+    "name": "4dimarik/SDB",
+    "description": "wooShopTBot",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "4dimarik"
+        }
+    ],
+    "require": {
+        "ext-json": "*",
+        "ext-mbstring": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "wooShopTBot\\": "src"
+        }
+    }
+}
