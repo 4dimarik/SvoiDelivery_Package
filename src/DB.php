@@ -8,6 +8,10 @@ use stdClass as stdClassAlias;
 
 class DB extends SafeMySQL
 {
+    function __construct()
+    {
+        parent::__construct(\Config::DB_OPTS);
+    }
     /**
      * @var string INSERT
      */
