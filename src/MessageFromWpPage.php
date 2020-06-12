@@ -4,8 +4,6 @@
 namespace wooShopTBot;
 
 
-use Config as ConfigAlias;
-
 class MessageFromWpPage extends Message
 {
     private $wp;
@@ -15,12 +13,12 @@ class MessageFromWpPage extends Message
 
     }
 
-    private function setTextFromPage()
+    private function setTextFromPage($page)
     {
-        $this->wp->setUrl(ConfigAlias::WP_DESCRIPTION_PAGE);
+        $this->wp->setUrl('/pages/'.$page['id']);
         $answer = $this->wp->answer();
         if ($answer['code']==200){
-            $this->text =  $this->clearHtml($answer['result']->content->rendered, '<strong><br>');
+            $this->text =  $this->clearHtml($answer['result']->content->rendered, $page['allowable_tags']);
         } else {
             $this->text = 'Ошибка при запросе WP';
         }
