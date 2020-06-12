@@ -35,6 +35,17 @@ class Request
     {
         return !is_null($Update->getMessage());
     }
+    public static function isCommand(Update $Update): bool
+    {
+        if ($Update->getMessage()->getEntities()[0]->getType()=='bot_command'){
+/*            $str = $Update->getMessage()->getText();
+            $start = $Update->getMessage()->getEntities()[0]->getType();
+            mb_substr();*/
+            return $Update->getMessage()->getText();
+        } else {
+            return false;
+        }
+    }
     public static function isTextMessage(Update $Update): bool
     {
         if (self::isMessage($Update)){
