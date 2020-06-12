@@ -4,6 +4,8 @@
 namespace wooShopTBot;
 
 
+use DateTime;
+use DateTimeZone;
 use TelegramBot\Api\Types\Update;
 
 
@@ -49,7 +51,7 @@ class Request
             ->addPropertyIsNull("message","cId", $this->Update->getMessage()->getChat()->getId())
             ->addPropertyIsNull("message","mId", $this->Update->getMessage()->getMessageId())
             ->addPropertyIsNull("message","text", $this->Update->getMessage()->getText())
-            ->addPropertyIsNull("message","date", $this->Update->getMessage()->getDate())
+            ->addMessageDate($this->Update->getMessage()->getDate())
             ->addUserContact($this->Update->getMessage()->getContact());
     }
 
@@ -87,4 +89,22 @@ class Request
         }
         return $this;
     }
+
+    /**
+     * @param NULL|int $getDate
+     * @return Request
+     */
+    private function addMessageDate($getDate): Request
+    {
+        if (!is_int($getDate)){
+            $dt = new DateTime();
+            $dt
+                ->setTimestamp(1591961407)
+                ->setTimezone(new DateTimeZone( "Europe/Moscow" ));
+
+            $this->data['message']['date'] = $dt->format('Y-m-d H:i:s');
+        }
+        return $this;
+    }
+
 }
