@@ -61,14 +61,26 @@ class Request
         return $this->data;
     }
 
-    private function addPropertyIsNull(string $type, string $name, string $value): Request
+
+    /**
+     * @param NULL|string $type
+     * @param NULL|string $name
+     * @param NULL|string $value
+     * @return Request
+     */
+    private function addPropertyIsNull($type, $name, $value): Request
     {
         if (!is_null($value)){
             $this->data[$type][$name] = $value;
         }
         return $this;
     }
-    private function addUserContact(string $contact): Request
+
+    /**
+     * @param NULL|string $contact
+     * @return Request
+     */
+    private function addUserContact($contact): Request
     {
         if (!is_null($contact)){
             $this->data['user']['contact'] = str_replace('+7', '8', $contact);
