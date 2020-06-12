@@ -8,9 +8,18 @@ use stdClass as stdClassAlias;
 
 class DB extends SafeMySQL
 {
+    /**
+     * @var string INSERT
+     */
     const INSERT = 'INSERT INTO ?n SET ?u';
 
+
     protected $query;
+
+    public function getDefInsertQuery(): string
+    {
+        return self::INSERT;
+    }
 
     protected function reset(): void
     {
