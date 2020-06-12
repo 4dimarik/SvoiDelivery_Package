@@ -9,15 +9,15 @@ use TelegramBot\Api\Types\Update;
 
 class Request
 {
-    const MESSAGE_FIELDS = ["cId", "mId", "text"];
-    const USER_FIELDS = ["uid", "first_name", "contact"];
+
     private $Update;
 
     /**
      * @var array
      */
     private $data = [
-        "message"=>[]
+        "message"=>[],
+        "user"=>[]
     ];
 
     /**
@@ -42,24 +42,14 @@ class Request
         }
 
     }
-    public function gettData(string $type): void
-    {
-        switch ($type){
-            case'message':
-                $this->setMessageData();
-                break;
-            default:
-                break;
-        }
-    }
 
-    private function setMessageData(): void
+    public function setMessageData(): void
     {
         $this
-            ->addPropertyIsNull("cId", $this->Update->getMessage()->getChat()->getId())
-            ->addPropertyIsNull("mId", $this->Update->getMessage()->getMessageId())
-            ->addPropertyIsNull("text", $this->Update->getMessage()->getText())
-            ->addPropertyIsNull("date", $this->Update->getMessage()->getDate())
+            ->addPropertyIsNull("message","cId", $this->Update->getMessage()->getChat()->getId())
+            ->addPropertyIsNull("message","mId", $this->Update->getMessage()->getMessageId())
+            ->addPropertyIsNull("message","text", $this->Update->getMessage()->getText())
+            ->addPropertyIsNull("message","date", $this->Update->getMessage()->getDate())
             ->addUserContact($this->Update->getMessage()->getContact());
     }
 
@@ -71,17 +61,17 @@ class Request
         return $this->data;
     }
 
-    private function addPropertyIsNull(string $name, string $value): Request
+    private function addPropertyIsNull(string $type, string $name, string $value): Request
     {
         if (!is_null($value)){
-            $this->data[$name] = $value;
+            $this->data[$type][$name] = $value;
         }
         return $this;
     }
     private function addUserContact(string $contact): Request
     {
         if (!is_null($contact)){
-            $this->data['contact'] = str_replace('+7', '8', $contact);
+            $this->data['user']['contact'] = str_replace('+7', '8', $contact);
         }
         return $this;
     }
