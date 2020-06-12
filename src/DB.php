@@ -13,7 +13,6 @@ class DB extends SafeMySQL
      */
     const INSERT = 'INSERT INTO ?n SET ?u';
 
-
     protected $query;
 
     public function getDefInsertQuery(): string
