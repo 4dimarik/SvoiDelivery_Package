@@ -19,9 +19,10 @@ class MessageFromWpPage extends Message
         $this->wp->setUrl('/pages/'.$page['id']);
         $answer = $this->wp->answer();
         if ($answer['code']==200){
-            $this->text =  $this->clearHtml($answer['result']->content->rendered, $page['allowable_tags']);
+            $this->text = $this->clearHtml($answer['result']->content->rendered, $page['allowable_tags']);
+            $this->setParseMode('html');
         } else {
-            $this->text = 'Ошибка при запросе WP';
+            $this->setText('Ошибка при запросе WP');
         }
     }
 

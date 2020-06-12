@@ -10,6 +10,9 @@ abstract class Message
 {
     protected $text;
     protected $keyboard;
+    protected $parse_mode=null;
+    protected $disable_web_page_preview=false;
+    protected $disable_notification=null;
 
     /**
      * @return mixed
@@ -43,6 +46,38 @@ abstract class Message
     public function setReplyKeyboardMarkup($keyboard,$oneTimeKeyboard=true,$resizeKeyboard=true): void
     {
         $this->keyboard=new ReplyKeyboardMarkup($keyboard, $oneTimeKeyboard, $resizeKeyboard);
+    }
+
+    /**
+     * @return null
+     */
+    public function getParseMode()
+    {
+        return $this->parse_mode;
+    }
+
+    /**
+     * @param null $parse_mode
+     */
+    public function setParseMode($parse_mode): void
+    {
+        $this->parse_mode=$parse_mode;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDisableWebPagePreview(): bool
+    {
+        return $this->disable_web_page_preview;
+    }
+
+    /**
+     * @return null
+     */
+    public function getDisableNotification()
+    {
+        return $this->disable_notification;
     }
 
 
