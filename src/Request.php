@@ -9,7 +9,6 @@ use TelegramBot\Api\Types\Update;
 
 class Request
 {
-
     private $Update;
 
     /**
@@ -21,14 +20,8 @@ class Request
         $this->Update=$Update;
     }
 
-    public function isMessage(): bool
+    public static function isMessage(Update $Update): bool
     {
-        return is_null($this->Update->getMessage());
+        return !is_null($Update->getMessage());
     }
-
-    public function isCallbackQuery(): bool
-    {
-        return is_null($this->Update->getCallbackQuery());
-    }
-
 }
