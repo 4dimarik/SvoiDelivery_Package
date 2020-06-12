@@ -8,7 +8,8 @@ use stdClass as stdClassAlias;
 
 class DB extends SafeMySQL
 {
-    const INSERT = "INSERT INTO ?n SET ?u";
+    const INSERT = 'INSERT INTO ?n SET ?u';
+
     protected $query;
 
     protected function reset(): void
