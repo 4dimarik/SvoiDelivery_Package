@@ -7,9 +7,10 @@ namespace wooShopTBot;
 class MessageFromWpPage extends Message
 {
     private $wp;
-    public function __construct()
+    public function __construct($page)
     {
         $this->wp = new WP();
+        $this->setTextFromPage($page);
 
     }
 
