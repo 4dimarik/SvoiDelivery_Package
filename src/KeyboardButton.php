@@ -8,9 +8,7 @@ use stdClass;
 
 class KeyboardButton
 {
-    /**
-     * @var stdClass
-     */
+
     private $button;
 
     /**

@@ -3,8 +3,6 @@
 
 namespace wooShopTBot;
 
-
-
 class KeyboardArray
 {
     protected $keyboardArray=[];
