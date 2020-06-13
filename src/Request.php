@@ -47,15 +47,14 @@ class Request
     public function getCommand():void
     {
         if (self::isCommand($this->Update)){
-            $message = $this->Update->getMessage();
+            $text = $this->Update->getMessage()->getText();
             $entity = $this->Update->getMessage()->getEntities()[0];
             $offset = (int)$entity->getOffset();
             $length = (int)$entity->getLength();
-            $this->data['command'] = mb_substr($message, $offset+1, $length-1);
+            $this->data['command'] = mb_substr($text, ($offset+1), ($length-1));
         } else {
             $this->data['command'] = false;
         }
-
     }
     public static function isTextMessage(Update $Update): bool
     {
