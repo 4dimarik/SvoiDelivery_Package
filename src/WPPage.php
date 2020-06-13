@@ -4,7 +4,7 @@
 namespace wooShopTBot;
 
 
-class WPPage
+class  WPPage
 {
     private $wp;
     private $text;

@@ -19,6 +19,11 @@ class Base
     const ERR_WP_MSG = 'Ошибка при запросе WP';
 
     const WAIT_TEXT = "⏳";
+    //BUFFER
+    const BUFFER_DIR = 'buffer/';
+    const END_BUFFER_MSG = 'Буфер обновлен';
+
+    const SECTION_CATALOG_HOME_TEXT = '<a href="https://topcraftbeer.ru/wp-content/uploads/2020/05/SvoiDelivery300.png">Каталог</a>';
 
 
 }

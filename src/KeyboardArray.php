@@ -4,31 +4,39 @@
 namespace wooShopTBot;
 
 
-use stdClass;
 
 class KeyboardArray
 {
-    protected $keyboardArray;
+    protected $keyboardArray=[];
+    /**
+     * @var Catalog
+     */
+    private $catalog;
+    /**
+     * @var KeyboardRow
+     */
+    private $keyboardRow;
 
-    public function __construct($name)
+    public function __construct()
     {
-        $this->$name();
+        $this->catalog = new Catalog();
+        $this->keyboardRow = new KeyboardRow();
     }
 
-    protected function reset(): void
+    public function Catalog()
     {
-        $this->keyboardArray = new stdClass;
-    }
+        $catalog = $this->catalog
+            ->new()
+            ->newCategory()
+            ->getCatalog();
 
-    public function keyboardArray()
+        $this->addRow($this->keyboardRow->newCategory($catalog));
+        return $this->keyboardArray;
+    }
+    private function addRow($row)
     {
-        $this->reset();
+        array_push($this->keyboardArray, $row);
         return $this;
     }
 
-    public function button()
-    {
-        $this->keyboardArray->row[]='asd';
-
-    }
 }

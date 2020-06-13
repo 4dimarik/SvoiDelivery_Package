@@ -17,6 +17,7 @@ class KeyboardButton
      * @param $text
      * @param bool $request_contact
      * @param bool $request_location
+     * @return KeyboardButton
      */
     public function setButton($text, $request_contact=false, $request_location=false)
     {

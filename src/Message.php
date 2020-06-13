@@ -4,6 +4,7 @@
 namespace wooShopTBot;
 
 
+use TelegramBot\Api\Types\Inline\InlineKeyboardMarkup;
 use TelegramBot\Api\Types\ReplyKeyboardMarkup;
 
 class Message
@@ -24,6 +25,7 @@ class Message
 
     /**
      * @param mixed $text
+     * @return Message
      */
     public function setText($text): Message
     {
@@ -51,6 +53,12 @@ class Message
         return $this;
     }
 
+    public function setInlineKeyboardMarkup($keyboardArray)
+    {
+        $this->keyboard=new InlineKeyboardMarkup($keyboardArray);
+        return $this;
+    }
+
     /**
      * @return null
      */
@@ -61,10 +69,12 @@ class Message
 
     /**
      * @param null $parse_mode
+     * @return Message
      */
-    protected function setParseMode($parse_mode): void
+    public function setParseMode($parse_mode): Message
     {
         $this->parse_mode=$parse_mode;
+        return $this;
     }
 
 }
