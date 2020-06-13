@@ -39,13 +39,13 @@ abstract class Message
     }
 
     /**
-     * @param mixed $keyboard
+     * @param $keyboardArray
      * @param bool $oneTimeKeyboard
      * @param bool $resizeKeyboard
      */
-    public function setReplyKeyboardMarkup($keyboard,$oneTimeKeyboard=true,$resizeKeyboard=true): void
+    public function setReplyKeyboardMarkup($keyboardArray, $oneTimeKeyboard=true,$resizeKeyboard=true): void
     {
-        $this->keyboard=new ReplyKeyboardMarkup($keyboard, $oneTimeKeyboard, $resizeKeyboard);
+        $this->keyboard=new ReplyKeyboardMarkup($keyboardArray, $oneTimeKeyboard, $resizeKeyboard);
     }
 
     /**

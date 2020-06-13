@@ -12,5 +12,7 @@ class Base
     const ERR_TBL = "errors";
     const REQUEST_TBL = "requests";
 
+    const HOME_KEYBOARD = ["Каталог", "О нас"];
+
 
 }

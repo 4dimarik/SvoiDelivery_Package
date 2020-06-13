@@ -7,14 +7,12 @@ namespace wooShopTBot;
 class MessageFromWpPage extends Message
 {
     private $wp;
-    public function __construct($page)
+    public function __construct()
     {
         $this->wp = new WP();
-        $this->setTextFromPage($page);
-
     }
 
-    private function setTextFromPage($page)
+    public function setTextFromPage($page)
     {
         $this->wp->setUrl('/pages/'.$page['id']);
         $answer = $this->wp->answer();
@@ -24,7 +22,9 @@ class MessageFromWpPage extends Message
         } else {
             $this->setText('Ошибка при запросе WP');
         }
+        return $this;
     }
+
 
     private function clearHtml($html, $allowable_tags){
         $htmlText = strip_tags($html, $allowable_tags);
@@ -33,5 +33,12 @@ class MessageFromWpPage extends Message
         $repTag = ['<b>', '</b>', "\n", "\n", "\n"];
 
         return str_replace($tag, $repTag, $htmlText);
+    }
+
+    private function setKeyboardArray($name)
+    {
+        $keyboardArray = new KeyboardArray($name);
+        $this->setReplyKeyboardMarkup();
+
     }
 }
