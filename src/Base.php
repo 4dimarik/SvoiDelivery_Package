@@ -14,5 +14,8 @@ class Base
 
     const HOME_KEYBOARD = ["Каталог", "О нас"];
 
+    const ERR_COM_MSG = 'Неизвестная команда';
+    const ERR_TEXT_MSG = 'Ожидается только текстовое сообщение';
+
 
 }
