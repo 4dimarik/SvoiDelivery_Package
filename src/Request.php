@@ -38,8 +38,8 @@ class Request
     }
     public static function isCommand(Update $Update): bool
     {
-        if ($Update->getMessage()->getEntities()[0]->getType()=='bot_command'){
-            return true;
+        if ($Update->getMessage()->getEntities()){
+            return $Update->getMessage()->getEntities()[0]->getType()=='bot_command';
         } else {
             return false;
         }
@@ -53,7 +53,7 @@ class Request
             $length = (int)$entity->getLength();
             $this->data['command'] = mb_substr($message, $offset+1, $length-1);
         } else {
-            $this->data['command'];
+            $this->data['command'] = false;
         }
 
     }
