@@ -19,7 +19,8 @@ class Request
      */
     private $data = [
         "message"=>[],
-        "user"=>[]
+        "user"=>[],
+        "command"=>false
     ];
 
     /**
@@ -43,16 +44,16 @@ class Request
             return false;
         }
     }
-    public function getCommand(Update $Update)
+    public function getCommand():void
     {
-        if (self::isCommand($Update)){
-            $message = $Update->getMessage();
-            $entity = $Update->getMessage()->getEntities()[0];
+        if (self::isCommand($this->Update)){
+            $message = $this->Update->getMessage();
+            $entity = $this->Update->getMessage()->getEntities()[0];
             $offset = (int)$entity->getOffset();
             $length = (int)$entity->getLength();
-            return mb_substr($message, $offset+1, $length-1);
+            $this->data['command'] = mb_substr($message, $offset+1, $length-1);
         } else {
-            return false;
+            $this->data['command'];
         }
 
     }
@@ -73,7 +74,8 @@ class Request
             ->addPropertyIsNull("message","mId", $this->Update->getMessage()->getMessageId())
             ->addPropertyIsNull("message","text", $this->Update->getMessage()->getText())
             ->addMessageDate($this->Update->getMessage()->getDate())
-            ->addUserContact($this->Update->getMessage()->getContact());
+            ->addUserContact($this->Update->getMessage()->getContact())
+            ->getCommand();
     }
 
     /**
