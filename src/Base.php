@@ -16,6 +16,9 @@ class Base
 
     const ERR_COM_MSG = 'Неизвестная команда';
     const ERR_TEXT_MSG = 'Ожидается только текстовое сообщение';
+    const ERR_WP_MSG = 'Ошибка при запросе WP';
+
+    const WAIT_TEXT = "⏳";
 
 
 }
