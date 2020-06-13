@@ -7,7 +7,7 @@ namespace wooShopTBot;
 class WPPage
 {
     private $wp;
-    public $text;
+    private $text;
     public function __construct($page)
     {
         $this->wp = new WP();
@@ -35,5 +35,13 @@ class WPPage
         $repTag = ['<b>', '</b>', "\n", "\n", "\n"];
 
         return str_replace($tag, $repTag, $htmlText);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getText()
+    {
+        return $this->text;
     }
 }

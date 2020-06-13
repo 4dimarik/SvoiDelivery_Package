@@ -6,7 +6,7 @@ namespace wooShopTBot;
 
 use TelegramBot\Api\Types\ReplyKeyboardMarkup;
 
-abstract class Message
+class Message
 {
     protected $text;
     protected $keyboard;
@@ -25,9 +25,10 @@ abstract class Message
     /**
      * @param mixed $text
      */
-    public function setText($text): void
+    public function setText($text): Message
     {
         $this->text=$text;
+        return $this;
     }
 
     /**
