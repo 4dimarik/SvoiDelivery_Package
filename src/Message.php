@@ -42,10 +42,12 @@ abstract class Message
      * @param $keyboardArray
      * @param bool $oneTimeKeyboard
      * @param bool $resizeKeyboard
+     * @return Message
      */
-    public function setReplyKeyboardMarkup($keyboardArray, $oneTimeKeyboard=true,$resizeKeyboard=true): void
+    public function setReplyKeyboardMarkup($keyboardArray, $oneTimeKeyboard=true,$resizeKeyboard=true)
     {
         $this->keyboard=new ReplyKeyboardMarkup($keyboardArray, $oneTimeKeyboard, $resizeKeyboard);
+        return $this;
     }
 
     /**
@@ -59,26 +61,9 @@ abstract class Message
     /**
      * @param null $parse_mode
      */
-    public function setParseMode($parse_mode): void
+    protected function setParseMode($parse_mode): void
     {
         $this->parse_mode=$parse_mode;
     }
-
-    /**
-     * @return bool
-     */
-    public function isDisableWebPagePreview(): bool
-    {
-        return $this->disable_web_page_preview;
-    }
-
-    /**
-     * @return null
-     */
-    public function getDisableNotification()
-    {
-        return $this->disable_notification;
-    }
-
 
 }
